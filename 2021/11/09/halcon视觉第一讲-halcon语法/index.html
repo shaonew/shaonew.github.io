@@ -534,6 +534,12 @@
 <p>d4 := 12345$’10.5’//小于10位文本右对齐，小于5位左边补零,大于不受影响</p>
 <p>s1 := ‘Hugo’$’10’ //文本右对齐</p>
 <p>s1 := ‘Hugo’$’-10’ //文本左对齐</p>
+<h1 id="dev-update-off和dev-update-on"><a href="#dev-update-off和dev-update-on" class="headerlink" title="dev_update_off和dev_update_on"></a>dev_update_off和dev_update_on</h1><h2 id="dev-update-off-实际上是三条语句构成"><a href="#dev-update-off-实际上是三条语句构成" class="headerlink" title="dev_update_off 实际上是三条语句构成"></a>dev_update_off 实际上是三条语句构成</h2><ol>
+<li>dev_update_pc (‘off’) 在程序执行期间，控制程序计数器的更新</li>
+<li>dev_update_var 在程序执行期间切换变量窗口的更新或关闭，则每当程序修改变量时，更改变量窗口(图标和控件变量)的内容</li>
+<li>dev_update_time 控制是否显示算子的执行时间</li>
+</ol>
+<p>一般写程序之前调用dev_update_off，写完后调用dev_update_on</p>
 
                 
             </div>
