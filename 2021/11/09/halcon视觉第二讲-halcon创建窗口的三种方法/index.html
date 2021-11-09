@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="halcon视觉第一讲 halcon语法, zhouhui">
+    <meta name="keywords" content="halcon视觉第二讲 halcon创建窗口的三种方法, zhouhui">
     <meta name="description" content="非淡泊无以明志,非宁静无以致远">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>halcon视觉第一讲 halcon语法 | zhouhui</title>
+    <title>halcon视觉第二讲 halcon创建窗口的三种方法 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">halcon视觉第一讲 halcon语法</h1>
+                    <h1 class="description center-align post-title">halcon视觉第二讲 halcon创建窗口的三种方法</h1>
                 </div>
             </div>
         </div>
@@ -481,65 +481,25 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="halcon基本语法"><a href="#halcon基本语法" class="headerlink" title="halcon基本语法"></a>halcon基本语法</h1><p>等号:           :=</p>
-<p>不等号:         #</p>
-<p>注释符:         *</p>
-<p>字符串赋值:     str:=’halcon’</p>
-<p>等于比较符:     if(X=10)</p>
-<p>与:             if(A&gt;1 and A&lt;30)</p>
-<p>或:             if(A&gt;1 or A&lt;30)</p>
-<p>求反:           if(not(A=10))</p>
-<p>For 循环</p>
-<p>for I := 0 to NumBalls - 1 by 1</p>
-<p>endfor</p>
-<p>While 循环</p>
-<p>wile (x == 1)</p>
-<p>Endwhile</p>
-<p>异常获取:</p>
-<p>Try</p>
-<p>catch(Exception)</p>
-<p>Endtry</p>
-<p>Switch多分支:</p>
-<p>switch(Index)</p>
-<p>case 1:</p>
-<p>break</p>
-<p>case 2:</p>
-<p>break</p>
-<p>case 3:</p>
-<p>break</p>
-<p>default:</p>
-<p>break</p>
-<p>endswitch</p>
-<h1 id="Tuple数组"><a href="#Tuple数组" class="headerlink" title="Tuple数组"></a>Tuple数组</h1><p>*将一个Tuple数组赋值<br>Tuple1 := [1, 0, 3, 4, 5, 6, 7, 8, 9]</p>
-<p>*给Tuple数组元素赋值<br>Tuple1[1] := 2<br>将第1个元素赋值为2,改完后值为[1, 2, 3, 4, 5, 6, 7, 8, 9]</p>
-<p>*批量改变数组元素的值<br>Tuple1[1,3,5] := ‘abc’<br>将数组中的第1，第3和第5个的值改成abc,改完后值为[1, ‘abc’, 3, ‘abc’, 5, ‘abc’, 7, 8, 9]</p>
-<p>*批量给Tuple数组赋值，其值为0到1000连续值<br>Tuple3 := [0:10000]</p>
-<p>*批量给Tuple数组赋值，其值从3到200，步长为1<br>Tuple4 := [3:1:200]<br>执行后值为[3,….,200]</p>
-<p>*批量给Tuple数组赋值，其值为100到-100的连续值，步长为-10<br>Tuple5 := [100:-10:-100]</p>
-<p>*对两个Tuple数组进行合并操作<br>TupleInt1 := [3,1,2,9,1]<br>TupleInt2 := [10,2,4,3,2]<br>tuple_union (TupleInt1, TupleInt2, UnionInt)<br>执行之后值为[3,1,2,9,10,4],也就是只保留不一样的数值</p>
-<p>*对两个Tuple数组进行交集操作<br>TupleInt3 := [3,1,2,9,1]<br>TupleInt4 := [10,2,4,3,2]<br>tuple_intersection(TupleInt3, TupleInt4, IntersectionInt)<br>执行之后值为[3,2],也就是相同的元素保留，不同的元素丢弃</p>
-<p>*对Tuple数组元素进行替换<br>OriginalTuple := [0,1,2,3,4,5]<br>tuple_replace(OriginalTuple, [0,1], [‘x’,’y’], Replaced)<br>执行之后值为[‘x’,’y’,2,3,4,5]</p>
-<p>*向Tuple数组中插入数值<br>OriginalTuple := [0,1,2,3,4,5]<br>tuple_insert(OriginalTuple, 3, ‘x’, InsertSingleValueA)<br>执行之后值为[0,1,2,’x’,3,4,5],也就是在下标3的位置插入x</p>
-<h1 id="字符数字格式化"><a href="#字符数字格式化" class="headerlink" title="字符数字格式化"></a>字符数字格式化</h1><p>i1 := 123$’#o’ //8进制，0为前缀</p>
-<p>i2 := 123$’#x’ //16进制，0x为前缀</p>
-<p>i3 := 123$’#X’ //16进制，0x为前缀</p>
-<p>i4 := 123$’#f’ //double型,默认保留小数点后6位</p>
-<p>i5 := 123$’#g’ //使数字始终保持6位，不足补零</p>
-<p>i6 := 123$’#G’ //使数字始终保持6位，不足补零</p>
-<p>i7 := 123$’#e’ //转换成科学计数</p>
-<p>i8 := 123$’#E’ //转换成科学计数</p>
-<p>d1 := 123$’6’//小于6位文本右对齐,大于不受影响</p>
-<p>d2 := 123$’-6’//小于6位文本左对齐,大于不受影响</p>
-<p>d3 := 123$’.6’//小于6位左边补零,大于不受影响</p>
-<p>d4 := 12345$’10.5’//小于10位文本右对齐，小于5位左边补零,大于不受影响</p>
-<p>s1 := ‘Hugo’$’10’ //文本右对齐</p>
-<p>s1 := ‘Hugo’$’-10’ //文本左对齐</p>
-<h1 id="dev-update-off和dev-update-on"><a href="#dev-update-off和dev-update-on" class="headerlink" title="dev_update_off和dev_update_on"></a>dev_update_off和dev_update_on</h1><h2 id="dev-update-off-实际上是三条语句构成"><a href="#dev-update-off-实际上是三条语句构成" class="headerlink" title="dev_update_off 实际上是三条语句构成"></a>dev_update_off 实际上是三条语句构成</h2><ol>
-<li>dev_update_pc (‘off’) 在程序执行期间，控制程序计数器的更新</li>
-<li>dev_update_var 在程序执行期间切换变量窗口的更新或关闭，则每当程序修改变量时，更改变量窗口(图标和控件变量)的内容</li>
-<li>dev_update_time 控制是否显示算子的执行时间</li>
-</ol>
-<p>一般写程序之前调用dev_update_off，写完后调用dev_update_on</p>
+                <h1 id="halcon创建窗口的三种方法"><a href="#halcon创建窗口的三种方法" class="headerlink" title="halcon创建窗口的三种方法"></a>halcon创建窗口的三种方法</h1><p>read_image (Image, ‘1’)</p>
+<p>*打开图像窗口</p>
+<p>dev_open_window (0, 0, 512, 512, ‘black’, WindowHandle) //创建指定大小的窗口</p>
+<p>dev_display (Image)</p>
+<p>get_image_size (Image, Width, Height)</p>
+<p>*打开具有给定最小和最大范围的新图形窗口，以便保留给定图像的纵横比。</p>
+<p>*WidthLimit设置为-1，则使用以下默认值：[500,800]。</p>
+<p>*HeightLimit设置为-1，则使用以下默认值：[400,600]。</p>
+<p>*如果根据窗口宽高限制无法创建窗口，则忽略最小窗口大小的限制</p>
+<p>dev_open_window_fit_image (Image, 0, 0, -1, -1, WindowHandle1)//根据图像信息创建等比例缩放的窗口</p>
+<p>dev_set_window (WindowHandle1)</p>
+<p>dev_display (Image)</p>
+<p>*打开具有给定最小和最大范围的新图形窗口，以便保留给定图像大小的宽高比</p>
+<p>*WidthLimit设置为-1，则使用以下默认值：[500,800]。</p>
+<p>*HeightLimit设置为-1，则使用以下默认值：[400,600]。</p>
+<p>*如果根据窗口宽高限制无法创建窗口，则忽略最小窗口大小的限制</p>
+<p>dev_open_window_fit_size (0, 0, Width, Height, -1, -1, WindowHandle2)//指定大小创建窗口</p>
+<p>dev_set_window (WindowHandle2)</p>
+<p>dev_display (Image)</p>
 
                 
             </div>
@@ -566,7 +526,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%80%E8%AE%B2-halcon%E8%AF%AD%E6%B3%95/">https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%80%E8%AE%B2-halcon%E8%AF%AD%E6%B3%95/</a>
+                    <a href="https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E8%AE%B2-halcon%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E8%AE%B2-halcon%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -781,9 +741,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E8%AE%B2-halcon%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
                     <div class="card-image">
@@ -801,9 +762,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -816,6 +777,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -838,13 +800,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/07/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+                <a href="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%80%E8%AE%B2-halcon%E8%AF%AD%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="常用命令">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="halcon视觉第一讲 halcon语法">
                         
-                        <span class="card-title">常用命令</span>
+                        <span class="card-title">halcon视觉第一讲 halcon语法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -855,14 +817,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-category">
-                                    常用命令
+                            <a href="/categories/%E8%A7%86%E8%A7%89/" class="post-category">
+                                    视觉
                                 </a>
                             
                             
@@ -872,8 +834,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-                        <span class="chip bg-color">常用命令</span>
+                    <a href="/tags/%E8%A7%86%E8%A7%89/">
+                        <span class="chip bg-color">视觉</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
                     </a>
                     
                 </div>
