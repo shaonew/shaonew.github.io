@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="halcon视觉第二讲 halcon创建窗口的三种方法, zhouhui">
+    <meta name="keywords" content="halcon视觉第三讲 霍夫直线, zhouhui">
     <meta name="description" content="非淡泊无以明志,非宁静无以致远">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>halcon视觉第二讲 halcon创建窗口的三种方法 | zhouhui</title>
+    <title>halcon视觉第三讲 霍夫直线 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">halcon视觉第二讲 halcon创建窗口的三种方法</h1>
+                    <h1 class="description center-align post-title">halcon视觉第三讲 霍夫直线</h1>
                 </div>
             </div>
         </div>
@@ -481,25 +481,35 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="halcon创建窗口的三种方法"><a href="#halcon创建窗口的三种方法" class="headerlink" title="halcon创建窗口的三种方法"></a>halcon创建窗口的三种方法</h1><p>read_image (Image, ‘1’)</p>
-<p>*打开图像窗口</p>
-<p>dev_open_window (0, 0, 512, 512, ‘black’, WindowHandle) //创建指定大小的窗口</p>
-<p>dev_display (Image)</p>
-<p>get_image_size (Image, Width, Height)</p>
-<p>*打开具有给定最小和最大范围的新图形窗口，以便保留给定图像的纵横比。</p>
-<p>*WidthLimit设置为-1，则使用以下默认值：[500,800]。</p>
-<p>*HeightLimit设置为-1，则使用以下默认值：[400,600]。</p>
-<p>*如果根据窗口宽高限制无法创建窗口，则忽略最小窗口大小的限制</p>
-<p>dev_open_window_fit_image (Image, 0, 0, -1, -1, WindowHandle1)//根据图像信息创建等比例缩放的窗口</p>
-<p>dev_set_window (WindowHandle1)</p>
-<p>dev_display (Image)</p>
-<p>*打开具有给定最小和最大范围的新图形窗口，以便保留给定图像大小的宽高比</p>
-<p>*WidthLimit设置为-1，则使用以下默认值：[500,800]。</p>
-<p>*HeightLimit设置为-1，则使用以下默认值：[400,600]。</p>
-<p>*如果根据窗口宽高限制无法创建窗口，则忽略最小窗口大小的限制</p>
-<p>dev_open_window_fit_size (0, 0, Width, Height, -1, -1, WindowHandle2)//指定大小创建窗口</p>
-<p>dev_set_window (WindowHandle2)</p>
-<p>dev_display (Image)</p>
+                <h1 id="霍夫变换"><a href="#霍夫变换" class="headerlink" title="霍夫变换"></a>霍夫变换</h1><p>定义:</p>
+<p>霍夫变换是图像处理中从图像中识别几何形状的基本方法之一.几何形状包括圆，椭圆，直线等等.</p>
+<p>直线方程:</p>
+<p>直线的方程可以用y=k*x+b 来表示，其中k和b是参数，分别是斜率和截距;</p>
+<p>霍夫变换原理：</p>
+<p>设图像上的直线是y=x, 我们先取上面的三个点：A(0,0), B(1,1), C(2,2)。可以求出，过A点的直线的参数要满足方程b=0, 过B点的直线的参数要满足方程1=k+b, 过C点的直线的参数要满足方程2=2k+b, 这三个方程就对应着参数平面上的三条直线，而这三条直线会相交于一点(k=1,b=0)。 同理，原图像上直线y=x上的其它点(如(3,3),(4,4)等) 对应参数平面上的直线也会通过点(k=1,b=0)。<br><img src="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/1.png"></p>
+<p>当直线与x轴垂直，直角的正切值无穷大，故此直线不存在斜率,所以实际应用中，是采用参数方程p=x<em>cos(θ)+y</em>sin(θ)。这样，图像平面上的一个点就对应到参数p—θ平面上的一条曲线上。</p>
+<p>hough_lines(RegionIn : : AngleResolution, Threshold, AngleGap, DistGap :Angle, Dist)</p>
+<p>RegionIn:二值化边缘图像</p>
+<p>AngleResolution:角度的步进，步进大小为AngleResolution/1</p>
+<p>Threshold:要寻找的直线的阈值</p>
+<p>AngleGap:定义Hough图像中的点的邻域范围，从而确定局部最大值。</p>
+<p>DistGap:定义Hough图像中的点的邻域范围，从而确定局部最大值。</p>
+<p>Angle:找到的直线的角度</p>
+<p>Dist:找到的直线到圆点的距离</p>
+<h1 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h1><p><img src="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/%E7%9F%A9%E5%BD%A2.png"></p>
+<p>读取一张图像<br>read_image (Image, ‘矩形’)<br>get_image_size (Image, Width, Height)<br>dev_open_window (0, 0, Width, Height, ‘black’, WindowHandle)\</p>
+<p>剪切指定矩形的图像<br>rectangle1_domain (Image, ImageReduced, 76, 120.938, 464.875, 966.813)</p>
+<p>寻找图像中矩形的边缘<br>sobel_amp (ImageReduced, EdgeAmplitude, ‘thin_sum_abs’, 3)</p>
+<p>设置输出对象颜色<br>dev_set_color (‘red’)</p>
+<p>对上面获取的边缘图像进行阈值操作<br>threshold (EdgeAmplitude, Region, 10, 255)</p>
+<p>对阈值后的区域进行连通处理<br>connection (Region, ConnectedRegions)</p>
+<p>根据面积过滤出图像中外矩形区域<br>select_shape (ConnectedRegions, SelectedRegions, ‘area’, ‘and’, 2500, 99999)</p>
+<p>霍夫变换来寻找区域中的直线<br>hough_lines (SelectedRegions, 4, 50, 5, 5, Angle, Dist)</p>
+<p>设置输出对象的颜色<br>dev_set_color (‘blue’)</p>
+<p>将直线转换为区域<br>gen_region_hline (Regions, Angle, Dist)</p>
+<p>根据方向特征来过滤想要的直线<br>select_shape (Regions, SelectedRegions1, ‘orientation’, ‘and’, 1.5, 1.6)<br>select_shape (Regions, SelectedRegions2, ‘orientation’, ‘and’, 0, 0.1)</p>
+<p>显示图像和结果直线<br>dev_display (Image)<br>dev_display (SelectedRegions1)<br>dev_display (SelectedRegions2)</p>
+<p>#程序执行结果<br><img src="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/%E7%BB%93%E6%9E%9C.png"></p>
 
                 
             </div>
@@ -526,7 +536,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E8%AE%B2-halcon%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E8%AE%B2-halcon%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</a>
+                    <a href="https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/">https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -741,9 +751,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/">
                     <div class="card-image">
@@ -761,9 +772,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -776,6 +787,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -798,13 +810,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%80%E8%AE%B2-halcon%E8%AF%AD%E6%B3%95/">
+                <a href="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E8%AE%B2-halcon%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="halcon视觉第一讲 halcon语法">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="halcon视觉第二讲 halcon创建窗口的三种方法">
                         
-                        <span class="card-title">halcon视觉第一讲 halcon语法</span>
+                        <span class="card-title">halcon视觉第二讲 halcon创建窗口的三种方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
