@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="halcon视觉第三讲 霍夫直线, zhouhui">
+    <meta name="keywords" content="halcon视觉第五讲 区域点交集补集反选合并操作, zhouhui">
     <meta name="description" content="非淡泊无以明志,非宁静无以致远">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>halcon视觉第三讲 霍夫直线 | zhouhui</title>
+    <title>halcon视觉第五讲 区域点交集补集反选合并操作 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">halcon视觉第三讲 霍夫直线</h1>
+                    <h1 class="description center-align post-title">halcon视觉第五讲 区域点交集补集反选合并操作</h1>
                 </div>
             </div>
         </div>
@@ -460,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-09
+                    2021-11-10
                 </div>
                 
 
@@ -481,36 +481,42 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="霍夫变换"><a href="#霍夫变换" class="headerlink" title="霍夫变换"></a>霍夫变换</h1><p>定义:</p>
-<p>霍夫变换是图像处理中从图像中识别几何形状的基本方法之一.几何形状包括圆，椭圆，直线等等.</p>
-<p>直线方程:</p>
-<p>直线的方程可以用y=k*x+b 来表示，其中k和b是参数，分别是斜率和截距;</p>
-<p>霍夫变换原理：</p>
-<p>设图像上的直线是y=x, 我们先取上面的三个点：A(0,0), B(1,1), C(2,2)。可以求出，过A点的直线的参数要满足方程b=0, 过B点的直线的参数要满足方程1=k+b, 过C点的直线的参数要满足方程2=2k+b, 这三个方程就对应着参数平面上的三条直线，而这三条直线会相交于一点(k=1,b=0)。 同理，原图像上直线y=x上的其它点(如(3,3),(4,4)等) 对应参数平面上的直线也会通过点(k=1,b=0)。<br><img src="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/1.png"></p>
-<p>当直线与x轴垂直，直角的正切值无穷大，故此直线不存在斜率,所以实际应用中，是采用参数方程p=x<em>cos(θ)+y</em>sin(θ)。这样，图像平面上的一个点就对应到参数p—θ平面上的一条曲线上。</p>
-<p>hough_lines(RegionIn : : AngleResolution, Threshold, AngleGap, DistGap :Angle, Dist)</p>
-<p>RegionIn:二值化边缘图像</p>
-<p>AngleResolution:角度的步进，步进大小为AngleResolution/1</p>
-<p>Threshold:要寻找的直线的阈值</p>
-<p>AngleGap:定义Hough图像中的点的邻域范围，从而确定局部最大值。</p>
-<p>DistGap:定义Hough图像中的点的邻域范围，从而确定局部最大值。</p>
-<p>Angle:找到的直线的角度</p>
-<p>Dist:找到的直线到圆点的距离</p>
-<h1 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h1><p><img src="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/%E7%9F%A9%E5%BD%A2.png"></p>
-<p>读取一张图像<br>read_image (Image, ‘矩形’)<br>get_image_size (Image, Width, Height)<br>dev_open_window (0, 0, Width, Height, ‘black’, WindowHandle)\</p>
-<p>剪切指定矩形的图像<br>rectangle1_domain (Image, ImageReduced, 76, 120.938, 464.875, 966.813)</p>
-<p>寻找图像中矩形的边缘<br>sobel_amp (ImageReduced, EdgeAmplitude, ‘thin_sum_abs’, 3)</p>
-<p>设置输出对象颜色<br>dev_set_color (‘red’)</p>
-<p>对上面获取的边缘图像进行阈值操作<br>threshold (EdgeAmplitude, Region, 10, 255)</p>
-<p>对阈值后的区域进行连通处理<br>connection (Region, ConnectedRegions)</p>
-<p>根据面积过滤出图像中外矩形区域<br>select_shape (ConnectedRegions, SelectedRegions, ‘area’, ‘and’, 2500, 99999)</p>
-<p>霍夫变换来寻找区域中的直线<br>hough_lines (SelectedRegions, 4, 50, 5, 5, Angle, Dist)</p>
-<p>设置输出对象的颜色<br>dev_set_color (‘blue’)</p>
-<p>将直线转换为区域<br>gen_region_hline (Regions, Angle, Dist)</p>
-<p>根据方向特征来过滤想要的直线<br>select_shape (Regions, SelectedRegions1, ‘orientation’, ‘and’, 1.5, 1.6)<br>select_shape (Regions, SelectedRegions2, ‘orientation’, ‘and’, 0, 0.1)</p>
-<p>显示图像和结果直线<br>dev_display (Image)<br>dev_display (SelectedRegions1)<br>dev_display (SelectedRegions2)</p>
-<p>#程序执行结果<br><img src="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/%E7%BB%93%E6%9E%9C.png"></p>
-
+                <h1 id="区域的反选"><a href="#区域的反选" class="headerlink" title="区域的反选"></a>区域的反选</h1><p>dev_open_window(0, 0, 512, 512, ‘black’, WindowHandle)//打开窗口，背景黑色</p>
+<p>gen_circle(Circle, 200, 200, 100.5)//画圆</p>
+<p>dev_clear_window()//清除窗口</p>
+<p>complement(Circle, RegionComplement)//反选圆以外的区域</p>
+<h1 id="区域的补集"><a href="#区域的补集" class="headerlink" title="区域的补集"></a>区域的补集</h1><p>dev_open_window(0, 0, 512, 512, ‘black’, WindowHandle) </p>
+<p>gen_circle(Circle1, 122.5, 126.5, 69.5) //画圆1</p>
+<p>gen_circle(Circle2, 184.5, 179.5, 73)//画圆2</p>
+<p>difference(Circle1,Circle2,RegionDifference)//求圆1的补集</p>
+<p>dev_clear_window()//清除窗口</p>
+<p>dev_display(RegionDifference)//显示补集</p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%94%E8%AE%B2-%E5%8C%BA%E5%9F%9F%E7%82%B9%E4%BA%A4%E9%9B%86%E8%A1%A5%E9%9B%86%E5%8F%8D%E9%80%89%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/1.png"></p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%94%E8%AE%B2-%E5%8C%BA%E5%9F%9F%E7%82%B9%E4%BA%A4%E9%9B%86%E8%A1%A5%E9%9B%86%E5%8F%8D%E9%80%89%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/2.png"></p>
+<h1 id="区域交集的补集"><a href="#区域交集的补集" class="headerlink" title="区域交集的补集"></a>区域交集的补集</h1><p>dev_open_window(0, 0, 512, 512, ‘black’, WindowHandle) </p>
+<p>gen_circle(Circle1, 122.5, 126.5, 69.5) //画圆1</p>
+<p>gen_circle(Circle2, 184.5, 179.5, 73)//画圆2</p>
+<p>symm_difference(Circle1,Circle2,RegionDifference)//求圆1的补集</p>
+<p>dev_clear_window()//清除窗口</p>
+<p>dev_display(RegionDifference)//显示补集</p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%94%E8%AE%B2-%E5%8C%BA%E5%9F%9F%E7%82%B9%E4%BA%A4%E9%9B%86%E8%A1%A5%E9%9B%86%E5%8F%8D%E9%80%89%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/3.png"></p>
+<h1 id="区域交集"><a href="#区域交集" class="headerlink" title="区域交集"></a>区域交集</h1><p>dev_open_window(0, 0, 512, 512, ‘black’, WindowHandle) </p>
+<p>gen_circle(Circle1, 122.5, 126.5, 69.5) //画圆1</p>
+<p>gen_circle(Circle2, 184.5, 179.5, 73)//画圆2</p>
+<p>intersection(Circle1,Circle2,RegionDifference)//求圆1的补集</p>
+<p>dev_clear_window()//清除窗口</p>
+<p>dev_display(RegionDifference)//显示补集</p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%94%E8%AE%B2-%E5%8C%BA%E5%9F%9F%E7%82%B9%E4%BA%A4%E9%9B%86%E8%A1%A5%E9%9B%86%E5%8F%8D%E9%80%89%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/4.png"></p>
+<h1 id="Union1所有区域合并"><a href="#Union1所有区域合并" class="headerlink" title="Union1所有区域合并"></a>Union1所有区域合并</h1><p>dev_open_window(0, 0, 512, 512, ‘black’, WindowHandle)</p>
+<p>read_image(Image, ‘fabrik’)</p>
+<p>dev_set_colored(12)//设置所有区域的颜色有12种</p>
+<p>threshold(Image, Region, 128, 255)//阈值找出该区间的区域</p>
+<p>connection(Region, ConnectedRegions)//相邻区域合并，不相邻区域分割</p>
+<p>union1(ConnectedRegions, RegionUnion)//所有区域合并为一个区域</p>
+<p>dev_clear_window()</p>
+<p>dev_display(Image)</p>
+<p>dev_display(RegionUnion)</p>
+<h1 id="Union2两个区域合并"><a href="#Union2两个区域合并" class="headerlink" title="Union2两个区域合并"></a>Union2两个区域合并</h1>
                 
             </div>
             <hr/>
@@ -536,7 +542,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/">https://olefil.cn/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%89%E8%AE%B2-halcon%E9%9C%8D%E5%A4%AB%E7%9B%B4%E7%BA%BF/</a>
+                    <a href="https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%94%E8%AE%B2-%E5%8C%BA%E5%9F%9F%E7%82%B9%E4%BA%A4%E9%9B%86%E8%A1%A5%E9%9B%86%E5%8F%8D%E9%80%89%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/">https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%94%E8%AE%B2-%E5%8C%BA%E5%9F%9F%E7%82%B9%E4%BA%A4%E9%9B%86%E8%A1%A5%E9%9B%86%E5%8F%8D%E9%80%89%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -751,17 +757,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%9B%9B%E8%AE%B2-halcon%E5%A6%82%E4%BD%95%E8%AF%BB%E5%86%99%E5%8C%BA%E5%9F%9F%E5%92%8CXLD%E8%BD%AE%E5%BB%93/">
+                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%94%E8%AE%B2-%E5%8C%BA%E5%9F%9F%E7%82%B9%E4%BA%A4%E9%9B%86%E8%A1%A5%E9%9B%86%E5%8F%8D%E9%80%89%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="halcon视觉第四讲 如何读写区域和XLD轮廓">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="halcon视觉第五讲 区域点交集补集反选合并操作">
                         
-                        <span class="card-title">halcon视觉第四讲 如何读写区域和XLD轮廓</span>
+                        <span class="card-title">halcon视觉第五讲 区域点交集补集反选合并操作</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -771,9 +778,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -786,6 +793,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -808,13 +816,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/09/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E8%AE%B2-halcon%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
+                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%9B%9B%E8%AE%B2-halcon%E5%A6%82%E4%BD%95%E8%AF%BB%E5%86%99%E5%8C%BA%E5%9F%9F%E5%92%8CXLD%E8%BD%AE%E5%BB%93/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="halcon视觉第二讲 halcon创建窗口的三种方法">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="halcon视觉第四讲 如何读写区域和XLD轮廓">
                         
-                        <span class="card-title">halcon视觉第二讲 halcon创建窗口的三种方法</span>
+                        <span class="card-title">halcon视觉第四讲 如何读写区域和XLD轮廓</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -825,7 +833,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-10
                             </span>
                         <span class="publish-author">
                             
