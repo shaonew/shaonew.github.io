@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="halcon视觉第八讲 halcon画各种交互ROI图形, zhouhui">
+    <meta name="keywords" content="halcon视觉第九讲 halcon将Bayer图像转换为彩色图像, zhouhui">
     <meta name="description" content="非淡泊无以明志,非宁静无以致远">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>halcon视觉第八讲 halcon画各种交互ROI图形 | zhouhui</title>
+    <title>halcon视觉第九讲 halcon将Bayer图像转换为彩色图像 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">halcon视觉第八讲 halcon画各种交互ROI图形</h1>
+                    <h1 class="description center-align post-title">halcon视觉第九讲 halcon将Bayer图像转换为彩色图像</h1>
                 </div>
             </div>
         </div>
@@ -481,26 +481,30 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>dev_open_window (0, 0, 512, 512, ‘black’, WindowHandle)</p>
-<p>dev_set_draw (‘margin’)//绘图方式，描边</p>
-<p>*画圆</p>
-<p>draw_circle (WindowHandle, Row, Column, Radius)</p>
-<p>gen_circle (Circle, Row, Column, Radius)</p>
-<p>*画椭圆</p>
-<p>draw_ellipse (WindowHandle, Row1, Column1, Phi, Radius1, Radius2)</p>
-<p>gen_ellipse (Ellipse, Row1, Column1, Phi, Radius1, Radius2)</p>
-<p>*画不规则区域</p>
-<p>draw_polygon (PolygonRegion, WindowHandle)</p>
-<p>draw_line (WindowHandle, Row12, Column12, Row21, Column21)</p>
-<p>disp_line (WindowHandle, Row12, Column12, Row21, Column21)</p>
-<p>*画标准矩形</p>
-<p>draw_rectangle1 (WindowHandle, Row11, Column11, Row2, Column2)</p>
-<p>gen_rectangle1 (Rectangle, Row11, Column11, Row2, Column2)</p>
-<p>*画仿射矩形</p>
-<p>draw_rectangle2 (WindowHandle, Row3, Column3, Phi1, Length1, Length2)</p>
-<p>gen_rectangle2 (Rectangle1, Row3, Column3, Phi1, Length1, Length2)</p>
-<p>*画闭合区域</p>
-<p>draw_region (Region, WindowHandle)</p>
+                <h1 id="图像bayer格式介绍"><a href="#图像bayer格式介绍" class="headerlink" title="图像bayer格式介绍"></a>图像bayer格式介绍</h1><p>定义:bayer格式图片是伊士曼·柯达公司科学家Bryce Bayer发明的，Bryce Bayer所发明的拜耳阵列被广泛运用数字图像。</p>
+<p>Bayer图像排列形式:</p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B9%9D%E8%AE%B2-halcon%E5%B0%86Bayer%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F/1.png"></p>
+<p>Bayer图像如何转换为RGB:</p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B9%9D%E8%AE%B2-halcon%E5%B0%86Bayer%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F/2.png"></p>
+<p>R22=(R11+R13+R31+R33)/4</p>
+<p>B22=B22</p>
+<p>G22=(G12+G21+G32+G23)/4</p>
+<h1 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h1><p>*读取图像</p>
+<p>read_image (Image, ‘patras’)</p>
+<p>*获取图像大小</p>
+<p>get_image_size (Image, Width, Height)</p>
+<p>*打开窗口</p>
+<p>dev_open_window (0, 0, Width, Height, ‘black’, WindowHandle)</p>
+<p>*显示窗口</p>
+<p>dev_display (Image)</p>
+<p>*模拟Bayer图像</p>
+<p>simulate_bayer_image (Image, ImageCFA)//将图像转为Bayer图像</p>
+<p>*产生一个空的对象</p>
+<p>gen_empty_obj (RGBImage)</p>
+<p>*Bayer图像转换为RGB图像</p>
+<p>cfa_to_rgb (ImageCFA, RGBImage, ‘bayer_gb’, ‘bilinear’)//将bayern图像转为rgb图像</p>
+<p>*显示RGB图像</p>
+<p>dev_display (RGBImage)</p>
 
                 
             </div>
@@ -527,7 +531,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%85%AB%E8%AE%B2-halcon%E7%94%BB%E5%90%84%E7%A7%8D%E4%BA%A4%E4%BA%92ROI%E5%9B%BE%E5%BD%A2/">https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%85%AB%E8%AE%B2-halcon%E7%94%BB%E5%90%84%E7%A7%8D%E4%BA%A4%E4%BA%92ROI%E5%9B%BE%E5%BD%A2/</a>
+                    <a href="https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B9%9D%E8%AE%B2-halcon%E5%B0%86Bayer%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F/">https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B9%9D%E8%AE%B2-halcon%E5%B0%86Bayer%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -746,13 +750,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B9%9D%E8%AE%B2-halcon%E5%B0%86Bayer%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F/">
+                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E8%AE%B2-halcon%E5%A6%82%E4%BD%95%E5%B0%86%E5%9B%BE%E5%83%8F%E8%BD%AC%E5%8C%96%E4%B8%BA%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="halcon视觉第九讲 halcon将Bayer图像转换为彩色图像">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="halcon视觉第十讲 halcon如何将图像转化为矩阵形式">
                         
-                        <span class="card-title">halcon视觉第九讲 halcon将Bayer图像转换为彩色图像</span>
+                        <span class="card-title">halcon视觉第十讲 halcon如何将图像转化为矩阵形式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -799,13 +803,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%B8%83%E8%AE%B2-halcon%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%BE%81%E8%BF%87%E6%BB%A4%E5%8C%BA%E5%9F%9F%E5%92%8CXLD/">
+                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%85%AB%E8%AE%B2-halcon%E7%94%BB%E5%90%84%E7%A7%8D%E4%BA%A4%E4%BA%92ROI%E5%9B%BE%E5%BD%A2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="halcon视觉第七讲 halcon根据特征过滤区域和XLD">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="halcon视觉第八讲 halcon画各种交互ROI图形">
                         
-                        <span class="card-title">halcon视觉第七讲 halcon根据特征过滤区域和XLD</span>
+                        <span class="card-title">halcon视觉第八讲 halcon画各种交互ROI图形</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
