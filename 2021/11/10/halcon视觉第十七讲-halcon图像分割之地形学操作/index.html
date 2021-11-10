@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="halcon视觉第十六讲 halcon在窗口上显示中文汉字, zhouhui">
+    <meta name="keywords" content="halcon视觉第十七讲 halcon图像分割之地形学操作, zhouhui">
     <meta name="description" content="非淡泊无以明志,非宁静无以致远">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>halcon视觉第十六讲 halcon在窗口上显示中文汉字 | zhouhui</title>
+    <title>halcon视觉第十七讲 halcon图像分割之地形学操作 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">halcon视觉第十六讲 halcon在窗口上显示中文汉字</h1>
+                    <h1 class="description center-align post-title">halcon视觉第十七讲 halcon图像分割之地形学操作</h1>
                 </div>
             </div>
         </div>
@@ -481,22 +481,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>read_image(image, ‘particle’)<br><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2-halcon%E5%9C%A8%E7%AA%97%E5%8F%A3%E4%B8%8A%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%B1%89%E5%AD%97/1.png"></p>
-<p>get_image_size(image, width, height)</p>
-<p>dev_open_window(0, 0, width, height, ‘black’, WindowHandle)</p>
-<p>dev_set_draw(‘margin’)</p>
-<p>dev_set_color(‘green’)</p>
-<p>threshold(image, Region, 128, 255)</p>
-<p>connection(Region, ConnectedRegions)</p>
-<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2-halcon%E5%9C%A8%E7%AA%97%E5%8F%A3%E4%B8%8A%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%B1%89%E5%AD%97/2.png"></p>
-<p>select_shape_std(ConnectedRegions, SelectedRegions, ‘max_area’, 70) //选择面积最大的区域</p>
-<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2-halcon%E5%9C%A8%E7%AA%97%E5%8F%A3%E4%B8%8A%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%B1%89%E5%AD%97/3.png"></p>
-<p>area_center(SelectedRegions, Area, Row, Column)//获取区域的面积大小，中心点的横坐标和列坐标</p>
-<p>dev_display(image)</p>
-<p>dev_display(SelectedRegions)</p>
-<p>set_tposition(WindowHandle, height/2, 0)</p>
-<p>write_string(WindowHandle, ‘面积最大区域的行坐标:’ + Row + ‘面积最大区域的列坐标’ + Column)</p>
-<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2-halcon%E5%9C%A8%E7%AA%97%E5%8F%A3%E4%B8%8A%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%B1%89%E5%AD%97/4.png"></p>
+                <p>dev_close_window ()</p>
+<p>read_image (image, ‘particle’)</p>
+<p>get_image_size (image, Width, Height)</p>
+<p>dev_open_window (0, 0, Width/2, Height/2, ‘black’, WindowID)</p>
+<p>dev_set_draw (‘margin’)</p>
+<p>dev_set_colored (12)</p>
+<p>dev_clear_window ()</p>
+<p>*高斯滤波<br>gauss_image(image, ImageGauss, 9) </p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E5%9C%B0%E5%BD%A2%E5%AD%A6%E6%93%8D%E4%BD%9C/1.png"></p>
+<p>*gauss_filter (image, ImageGauss, 9)</p>
+<p>*图像反选</p>
+<p>invert_image (ImageGauss, ImageInvert)</p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E5%9C%B0%E5%BD%A2%E5%AD%A6%E6%93%8D%E4%BD%9C/2.png"></p>
+<p>*从图像里提取分水岭和盆地</p>
+<p>*第一个输入参数:输入图像</p>
+<p>*第二个输出参数:分割后的盆地区域</p>
+<p>*第三个输出参数:分割后的分水岭区域</p>
+<p>watersheds (ImageInvert, Basins, Watersheds)</p>
+<p><img src="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E5%9C%B0%E5%BD%A2%E5%AD%A6%E6%93%8D%E4%BD%9C/3.png"></p>
+<p>dev_display (image)</p>
+<p>dev_display (Basins)</p>
 
                 
             </div>
@@ -523,7 +528,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2-halcon%E5%9C%A8%E7%AA%97%E5%8F%A3%E4%B8%8A%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%B1%89%E5%AD%97/">https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2-halcon%E5%9C%A8%E7%AA%97%E5%8F%A3%E4%B8%8A%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%B1%89%E5%AD%97/</a>
+                    <a href="https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E5%9C%B0%E5%BD%A2%E5%AD%A6%E6%93%8D%E4%BD%9C/">https://olefil.cn/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E5%9C%B0%E5%BD%A2%E5%AD%A6%E6%93%8D%E4%BD%9C/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -738,9 +743,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E5%9C%B0%E5%BD%A2%E5%AD%A6%E6%93%8D%E4%BD%9C/">
                     <div class="card-image">
@@ -758,9 +764,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -773,6 +779,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -795,13 +802,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E4%BA%94%E8%AE%B2-halcon%E5%A1%AB%E5%85%85%E5%8C%BA%E5%9F%9F%E4%B9%8B%E9%97%B4%E7%9A%84GAP%E6%88%96%E5%88%86%E5%89%B2%E9%87%8D%E5%8F%A0%E5%8C%BA%E5%9F%9F/">
+                <a href="/2021/11/10/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2-halcon%E5%9C%A8%E7%AA%97%E5%8F%A3%E4%B8%8A%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%B1%89%E5%AD%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="halcon视觉第十五讲 halcon填充区域之间的GAP或分割重叠区域">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="halcon视觉第十六讲 halcon在窗口上显示中文汉字">
                         
-                        <span class="card-title">halcon视觉第十五讲 halcon填充区域之间的GAP或分割重叠区域</span>
+                        <span class="card-title">halcon视觉第十六讲 halcon在窗口上显示中文汉字</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
