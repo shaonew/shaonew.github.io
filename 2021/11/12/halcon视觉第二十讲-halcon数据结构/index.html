@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="halcon视觉第十八讲 halcon图像分割之阈值, zhouhui">
+    <meta name="keywords" content="halcon视觉第二十讲 halcon数据结构, zhouhui">
     <meta name="description" content="非淡泊无以明志,非宁静无以致远">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>halcon视觉第十八讲 halcon图像分割之阈值 | zhouhui</title>
+    <title>halcon视觉第二十讲 halcon数据结构 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">halcon视觉第十八讲 halcon图像分割之阈值</h1>
+                    <h1 class="description center-align post-title">halcon视觉第二十讲 halcon数据结构</h1>
                 </div>
             </div>
         </div>
@@ -460,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-11
+                    2021-11-12
                 </div>
                 
 
@@ -481,115 +481,18 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="auto-threshold自动阈值"><a href="#auto-threshold自动阈值" class="headerlink" title="auto_threshold自动阈值"></a>auto_threshold自动阈值</h1><p>dev_close_window()</p>
-<p>read_image(Image, ‘egypt1’)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/1.png"></p>
-<p>get_image_size(Image, Width, Height)</p>
-<p>dev_open_window(0, 0, Width, Height, ‘black’, WindowHandle)</p>
-<p>dev_clear_window()</p>
-<p>Sigma:=4</p>
-<p>*根据图像的灰度直方图来确定阈值,这里的Sigma是高斯滤波器,用于直方图的平滑</p>
-<p>auto_threshold(Image, Regions, Sigma)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/2.png"></p>
-<h1 id="binary-threshold二值化阈值"><a href="#binary-threshold二值化阈值" class="headerlink" title="binary_threshold二值化阈值"></a>binary_threshold二值化阈值</h1><p>dev_close_window()</p>
-<p>read_image(Image, ‘egypt1’)</p>
-<p>get_image_size(Image, Width, Height)</p>
-<p>dev_open_window(0, 0, Width, Height, ‘black’, WindowHandle)</p>
-<p>dev_clear_window()</p>
-<p>*使用二值化阈值分割图像</p>
-<p>*如果LightDark =“light”，则选择灰度值大于或等于最佳阈值的所有像素</p>
-<p>*如果LightDark =“dark”，则选择灰度值小于的最佳阈值de 所有像素</p>
-<p>*通过选择Method =’max_separability’，可以调用灰度直方图的自动阈值</p>
-<p>*该算法首先计算图像的直方图，然后使用统计矩来找到将像素划分为前景和背景的最佳阈值</p>
-<p>*并使这两个类之间的可分离性最大化。 此方法仅适用于字节和uint2图像</p>
-<p>binary_threshold(Image, Region, ‘max_separability’, ‘dark’, UsedThreshold)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/3.png"></p>
-<h1 id="char-threshold字符提取"><a href="#char-threshold字符提取" class="headerlink" title="char_threshold字符提取"></a>char_threshold字符提取</h1><p>dev_close_window()</p>
-<p>read_image(Image, ‘alpha1’)</p>
-<p>get_image_size(Image, Width, Height)</p>
-<p>dev_open_window(0, 0, Width, Height, ‘black’, WindowHandle)</p>
-<p>dev_clear_window()</p>
-<p>*阈值分割提取字符,主要应用是在明亮的纸上分割黑色字符单通道图像。</p>
-<p>*第一个输入参数:图像</p>
-<p>*第二个输入参数:要计算直方图的区域</p>
-<p>*第三个输出参数:分割的字符区域</p>
-<p>*第四个输入参数:直方图高斯平滑的Sigma</p>
-<p>*第五个输入参数:灰度值差异的百分比</p>
-<p>*第五个输出参数:输出计算出的阈值</p>
-<p>char_threshold(Image, Image, Characters, 6, 95, Threshold)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/4.png"></p>
-<h1 id="dual-threshold分割"><a href="#dual-threshold分割" class="headerlink" title="dual_threshold分割"></a>dual_threshold分割</h1><p>*读取一张图像</p>
-<p>read_image (Traffic1, ‘traffic1’)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/5.png"></p>
-<p>*读取一张图像</p>
-<p>read_image (Traffic2, ‘traffic2’)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/6.png"></p>
-<p>*将图像由byte类型转化为int2类型</p>
-<p>convert_image_type (Traffic1, ImageConverted1, ‘int2’)</p>
-<p>*将图像由byte类型转化为int2类型</p>
-<p>convert_image_type (Traffic2, ImageConverted2, ‘int2’)</p>
-<p>*将两个图像相减</p>
-<p>sub_image (ImageConverted1, ImageConverted2, ImageSub, 1, 0)</p>
-<p>*将有符号图像分割为正负两个区域</p>
-<p>*第一个输入参数:图像</p>
-<p>*第二个输出参数:分割后的正负区域</p>
-<p>*第三个输入参数:最小区域大小</p>
-<p>*第四个输入参数:最小灰度值大小</p>
-<p>*第五个输入参数:阈值</p>
-<p>dual_threshold (ImageSub, RegionDiff, 500, 20, 10)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/7.png"></p>
-<h1 id="dyn-threshold局部阈值"><a href="#dyn-threshold局部阈值" class="headerlink" title="dyn_threshold局部阈值"></a>dyn_threshold局部阈值</h1><p>dev_close_window()</p>
-<p>read_image(Image, ‘egypt1’)</p>
-<p>get_image_size(Image, Width, Height)</p>
-<p>dev_open_window(0, 0, Width, Height, ‘black’, WindowHandle)</p>
-<p>dev_clear_window()</p>
-<p>*采用均值滤波，过滤图片的噪点</p>
-<p>mean_image(Image, ImageMean, 9, 9)</p>
-<p>*用局部阈值来分割图像</p>
-<p>*第一个输入参数:原始图像</p>
-<p>*第二个输入参数:滤波后的图像</p>
-<p>*第三个输出参数:分割后的区域</p>
-<p>*第四个输入参数:补偿值,范围在5到40之间比较有用</p>
-<p>*第五个输入参数:提取区域的类型，是亮的区域，或暗的区域，或相似区域，这里采用不相似</p>
-<p>dyn_threshold(Image, ImageMean, RegionDynThresh, 15, ‘not_equal’)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/8.png"></p>
-<h1 id="threshold固定阈值"><a href="#threshold固定阈值" class="headerlink" title="threshold固定阈值"></a>threshold固定阈值</h1><p>dev_close_window()</p>
-<p>read_image(Image, ‘egypt1’)</p>
-<p>get_image_size(Image, Width, Height)</p>
-<p>dev_open_window(0, 0, Width, Height, ‘black’, WindowHandle)</p>
-<p>dev_clear_window()</p>
-<p>*用全局阈值分割图像,试用图像亮度均匀的场合<br>*第一个输入参数:输入图像<br>*第二个输出参数:分割后的区域<br>*第三个输入参数:阈值下限<br>*第四个输入参数:阈值上限<br>threshold(Image, Region, 0, 150)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/9.png"></p>
-<h1 id="var-threshold局部阈值"><a href="#var-threshold局部阈值" class="headerlink" title="var_threshold局部阈值"></a>var_threshold局部阈值</h1><p>dev_close_window()</p>
-<p>read_image(Image, ‘label_01’)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/10.png"></p>
-<p>get_image_size(Image, Width, Height)</p>
-<p>dev_open_window(0, 0, Width, Height, ‘black’, WindowHandle)</p>
-<p>dev_clear_window()</p>
-<p>*通过局部平均值和标准偏差进行阈值图像。试用场合不均匀的照明或噪声的图像</p>
-<p>*第一个输入参数:输入图像</p>
-<p>*第二个输出参数:分割后的区域</p>
-<p>*第三个输人参数:均值和标准差的掩码宽度</p>
-<p>*第四个输入参数:均值和标准差的掩码高度</p>
-<p>*第五个输入参数:标准差因子</p>
-<p>*第六个输入参数:最小灰度值和均值之差</p>
-<p>*第七个输入参数:提取区域的类型，是亮的区域，或暗的区域，或相似区域，或不相似区域</p>
-<p>var_threshold(Image, Region, 15, 15, 1, 40, ‘dark’)</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/11.png"></p>
-<h1 id="local-threshold局部阈值"><a href="#local-threshold局部阈值" class="headerlink" title="local_threshold局部阈值"></a>local_threshold局部阈值</h1><p>dev_close_window()</p>
-<p>read_image(Image, ‘1’)<br><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/12.png"></p>
-<p>get_image_size(Image, Width, Height)</p>
-<p>dev_open_window(0, 0, Width/2, Height/2, ‘black’, WindowHandle)</p>
-<p>dev_clear_window()</p>
-<p>*基于局部平均值和标准偏差的局部自适应阈值，试用场合不均匀的照明或噪声的图像</p>
-<p>*第一个输入参数:输入图像</p>
-<p>*第二个输出参数:分割后的区域</p>
-<p>*第三个输人参数:分割的方法</p>
-<p>*第四个输入参数:提取前景还是背景</p>
-<p>*第五个输入参数:参数名</p>
-<p>*第六个输入参数:数值</p>
-<p>local_threshold(Image, Region, ‘adapted_std_deviation’, ‘dark’, [], [])</p>
-<p><img src="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/13.png"></p>
+                <h1 id="数据概念"><a href="#数据概念" class="headerlink" title="数据概念"></a>数据概念</h1><p>Halcon有两类基本参数：图形参数Iconic (image, region, XLD)与控制参数Control (string, integer, real, handle)，在Halcon算子的参数中，依次为：输入图形参数、输出图形参数、输入控制参数、输出控制参数；并且其输入参数不会被算子改变。下图为halcon与VC的语法区别。</p>
+<h1 id="图形参数"><a href="#图形参数" class="headerlink" title="图形参数"></a>图形参数</h1><p>1、Images</p>
+<p>Halcon中，Image = 通道和域构成.</p>
+<p>其中，通道包括单通道和多通道,图像数据存放在通道里;</p>
+<p>域可以看做Halcon的region;</p>
+<p>2、Regions</p>
+<p>将区域表示为以行列坐标为内容的游程编码的形式,使之成为一种压缩方式,存储更加高效;</p>
+<p>例如：字符串5555557777733322221111111</p>
+<p>游程编码为：（5，6）（7，5）（3，3）（2，4）（1，7）。可见，行程编码的位数远远少于原始字符串的位数。</p>
+<p>3.XLD(Extended Line Description)</p>
+<p>XLD对象提供了亚像素精度。有两种基本结构：轮廓多边形XLD。</p>
+<h1 id="控制参数"><a href="#控制参数" class="headerlink" title="控制参数"></a>控制参数</h1><p><img src="/2021/11/12/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E8%AE%B2-halcon%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1.png"></p>
 
                 
             </div>
@@ -616,7 +519,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://olefil.cn/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/">https://olefil.cn/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/</a>
+                    <a href="https://olefil.cn/2021/11/12/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E8%AE%B2-halcon%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">https://olefil.cn/2021/11/12/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E8%AE%B2-halcon%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -835,7 +738,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/11/12/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E8%AE%B2-halcon%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                <a href="/2021/11/13/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2-halcon%E6%89%BE%E5%87%BA%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9F%A9%E5%BD%A2/">
                     <div class="card-image">
                         
                         
@@ -852,7 +755,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-13
                         </span>
                         <span class="publish-author">
                             
@@ -888,13 +791,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E4%B9%9D%E8%AE%B2-halcon%E5%BD%A2%E6%80%81%E5%AD%A6%E8%86%A8%E8%83%80%E8%85%90%E8%9A%80%E5%BC%80%E8%BF%90%E7%AE%97%E9%97%AD%E8%BF%90%E7%AE%97/">
+                <a href="/2021/11/11/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2-halcon%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B9%8B%E9%98%88%E5%80%BC%20-%20%E5%89%AF%E6%9C%AC/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="halcon视觉第十九讲 halcon形态学膨胀腐蚀开运算闭运算">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="halcon视觉第十八讲 halcon图像分割之阈值">
                         
-                        <span class="card-title">halcon视觉第十九讲 halcon形态学膨胀腐蚀开运算闭运算</span>
+                        <span class="card-title">halcon视觉第十八讲 halcon图像分割之阈值</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
