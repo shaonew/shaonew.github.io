@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="halcon视觉第二十一讲 halcon找出图像中的指定矩形, zhouhui">
+    <meta name="keywords" content="halcon视觉第二十二讲 Halcon特征检测, zhouhui">
     <meta name="description" content="非淡泊无以明志,非宁静无以致远">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>halcon视觉第二十一讲 halcon找出图像中的指定矩形 | zhouhui</title>
+    <title>halcon视觉第二十二讲 Halcon特征检测 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">halcon视觉第二十一讲 halcon找出图像中的指定矩形</h1>
+                    <h1 class="description center-align post-title">halcon视觉第二十二讲 Halcon特征检测</h1>
                 </div>
             </div>
         </div>
@@ -460,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-13
+                    2021-11-15
                 </div>
                 
 
@@ -481,23 +481,73 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>read_image(Image, ‘fabrik’)</p>
-<p><img src="/2021/11/13/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2-halcon%E6%89%BE%E5%87%BA%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9F%A9%E5%BD%A2/2.png"></p>
-<p>get_image_size(Image, Width, Height)</p>
-<p>dev_close_window()</p>
-<p>dev_open_window(0, 0, Width, Height, ‘black’, WindowHandle)</p>
-<p>set_display_font(WindowHandle, 16, ‘mono’, ‘true’, ‘false’)//设置字体</p>
-<p>dev_set_draw(‘margin’)</p>
-<p>dev_set_part(0, 0, Height, Width)</p>
-<p>dev_display(Image)</p>
-<p>threshold(Image, Region, 165, 255)//二值化全局阈值</p>
-<p><img src="/2021/11/13/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2-halcon%E6%89%BE%E5%87%BA%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9F%A9%E5%BD%A2/1.png"></p>
-<p>*阈值后找个多个符合要求的区域</p>
-<p>connection(Region, ConnectedRegions) //将相邻区域连接，不相邻区域分开</p>
-<p><img src="/2021/11/13/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2-halcon%E6%89%BE%E5%87%BA%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9F%A9%E5%BD%A2/2.png"></p>
-<p>select_shape_std(ConnectedRegions, SelectedRegions, ‘max_area’, 70)//找出最大区域</p>
-<p>fill_up(SelectedRegions, RegionFillUp)//填充</p>
-<p><img src="/2021/11/13/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2-halcon%E6%89%BE%E5%87%BA%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9F%A9%E5%BD%A2/3.png"></p>
+                <h1 id="Region"><a href="#Region" class="headerlink" title="Region"></a>Region</h1><p>‘area’:     面积</p>
+<p>‘row’:      中心的行坐标</p>
+<p>‘column’:   中心的列坐标</p>
+<p>‘width’:    区域的宽度(平行于坐标轴)</p>
+<p>‘height’:   区域的高度(平行于坐标轴)</p>
+<p>‘row1’:     左上角的行坐标</p>
+<p>‘column1’:  左上角的列坐标</p>
+<p>‘row2’:     右下角的行坐标</p>
+<p>‘column2’:  右下角的列坐标</p>
+<p>‘ra’;     椭圆的长半轴</p>
+<p>‘rb’;     椭圆的短半轴</p>
+<p>‘phi’;    椭圆的方向</p>
+<p>‘roundness’:轮廓形状因子<br> <img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/1.png"></p>
+<p>‘num_sides’:多边形的边数</p>
+<p>‘connect_num’:连通组件的数目</p>
+<p>‘holes_num’:孔的数目</p>
+<p>‘area_holes’:对象的孔的数目</p>
+<p>‘max_diameter’:区域的最大直径</p>
+<p>‘orientation’:区域的方向</p>
+<p>‘outer_radius’:最小外接圆的半径</p>
+<p>‘inner_radius’:最大内圆的半径</p>
+<p>‘inner_width’: 区域内最大矩形的宽度</p>
+<p>‘inner_height’:区域内最大矩形的高度</p>
+<p>‘circularity’:</p>
+<p><img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/2.png"></p>
+<p>F:区域的面积；max是轮廓上的所有像素到中心的距离(最大距离)，C = min(1,C’)</p>
+<p>‘compactness’:紧密度,材料体内固体物质充实的程度叫紧密度</p>
+<p>‘contlength’:轮廓的长度</p>
+<p>‘convexity’:凸度</p>
+<p>‘rectangularity’:矩形度</p>
+<p>‘anisometry’：等效椭圆的轴比</p>
+<p><img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/3.png"></p>
+<p>‘bulkiness:’</p>
+<p> <img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/4.png"></p>
+<p>‘struct_factor:’</p>
+<p> <img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/5.png"></p>
+<p>‘dist_mean’:区域边框到中心的平均距离</p>
+<p>‘dist_deviation:’:区域边框到中心距离偏差</p>
+<p>‘euler_number’:欧拉数，最通常的空间完整性，即空洞区域内空洞数量的度量，测量法称为欧拉函数，它只用一个单一的数描述这些函数，称为欧拉数。</p>
+<p>‘rect2_phi’:  最小外界矩形的方向</p>
+<p>‘rect2_len1’:最小外接矩形的半长</p>
+<p>‘rect2_len2’:最小外接矩形半宽</p>
+<h1 id="几何矩：图像区域的几何特征"><a href="#几何矩：图像区域的几何特征" class="headerlink" title="几何矩：图像区域的几何特征"></a>几何矩：图像区域的几何特征</h1><p>零阶矩 m00反映了目标图像的面积。</p>
+<p>一阶矩 反映了目标图像的质心位置。</p>
+<p>二阶矩 又称惯性矩。</p>
+<p>三阶矩 主要表现了目标对其均值分布偏差的一种测度,即扭曲度。</p>
+<p>四阶矩 在统计学中用于描述一个分布的峰态</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>dev_open_window(0, 0, 512, 512, ‘black’, WindowHandle)</p>
+<p>gen_rectangle1(ROI_Rectangle1, 31.18, 108.97, 81.25, 284.15)</p>
+<p>gen_rectangle2(ROI_Rectangle2, 159.81, 190.50, rad(-17.92), 80.29, 21.73)</p>
+<p>gen_circle(ROI_circle, 263.11, 180.24, 34.78)</p>
+<p>gen_ellipse(ROI_ellipse, 361.96, 183.09, rad(-0.86), 84.39, 25.95)</p>
+<p>gen_ellipse(ROI_ellipse1, 361.96, 390, rad(0), 84.39, 25.95)</p>
+<p>gen_region_line(ROI_line, 459.54, 107.259, 460.173, 306.814)</p>
+<p>union2(ROI_Rectangle1, ROI_Rectangle2, RegionUnion)</p>
+<p>union2(RegionUnion, ROI_circle, RegionUnion)</p>
+<p>union2(RegionUnion, ROI_ellipse, RegionUnion)</p>
+<p>union2(RegionUnion, ROI_line, RegionUnion)</p>
+<p> <img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/6.png"></p>
+<p>connection(RegionUnion, ConnectedRegions)//相邻区域联合，不相邻区域分开</p>
+<p><img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/7.png"></p>
+<p>dev_display(ConnectedRegions)</p>
+<p>select_shape(ConnectedRegions, SelectedRegions, ‘area’, ‘and’, 8000, 99999)//通过面积选取特定区域</p>
+<p>select_shape(ConnectedRegions, SelectedRegions, ‘roundness’, ‘and’, 0.8, 1)//通过轮廓形状因子选取特定区域</p>
+<p><img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/8.png"></p>
+<p>通过特征检测助手确定因子参数，将圆选取出来</p>
+<p><img src="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/9.png"></p>
 
                 
             </div>
@@ -524,7 +574,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://olefil.cn/2021/11/13/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2-halcon%E6%89%BE%E5%87%BA%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9F%A9%E5%BD%A2/">https://olefil.cn/2021/11/13/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2-halcon%E6%89%BE%E5%87%BA%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9F%A9%E5%BD%A2/</a>
+                    <a href="https://olefil.cn/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/">https://olefil.cn/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -739,9 +789,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2-Halcon%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B/">
                     <div class="card-image">
@@ -759,9 +810,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -774,6 +825,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -796,13 +848,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/12/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E8%AE%B2-halcon%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                <a href="/2021/11/13/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2-halcon%E6%89%BE%E5%87%BA%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9F%A9%E5%BD%A2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="halcon视觉第二十讲 halcon数据结构">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="halcon视觉第二十一讲 halcon找出图像中的指定矩形">
                         
-                        <span class="card-title">halcon视觉第二十讲 halcon数据结构</span>
+                        <span class="card-title">halcon视觉第二十一讲 halcon找出图像中的指定矩形</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -813,7 +865,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-13
                             </span>
                         <span class="publish-author">
                             
