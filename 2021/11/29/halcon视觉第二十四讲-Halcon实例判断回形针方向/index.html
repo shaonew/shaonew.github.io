@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="halcon视觉第二十四讲 Halcon实例1, zhouhui">
+    <meta name="keywords" content="halcon视觉第二十四讲 Halcon实例判断回形针方向, zhouhui">
     <meta name="description" content="非淡泊无以明志,非宁静无以致远">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>halcon视觉第二十四讲 Halcon实例1 | zhouhui</title>
+    <title>halcon视觉第二十四讲 Halcon实例判断回形针方向 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">halcon视觉第二十四讲 Halcon实例1</h1>
+                    <h1 class="description center-align post-title">halcon视觉第二十四讲 Halcon实例判断回形针方向</h1>
                 </div>
             </div>
         </div>
@@ -481,51 +481,57 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h1><p>例如两人的5次测验成绩如下：X： 50，100，100，60，50 E(X)=72；Y： 73， 70， 75，72，70 E(Y)=72。平均成绩相同，但X 不稳定，对平均值的偏离大。方差描述随机变量对于数学期望的偏离程度.</p>
-<p>平均数：</p>
-<p> <img src="/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B1/3.png"></p>
-<p> （n表示这组数据个数，x1、x2、x3……xn表示这组数据具体数值）</p>
-<p>方差公式：</p>
-<p> <img src="/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B1/4.png"></p>
-<h1 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h1><p>*读取一张图像<br>read_image (Image, ‘progres’)</p>
-<p> <img src="/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B1/1.png"></p>
+                <p>*打开一张图像</p>
+<p>read_image (Clip, ‘clip’)</p>
 <p>*获取图像大小</p>
-<p>get_image_size (Image, Width, Height)</p>
-<p>*关闭窗口</p>
+<p>get_image_size (Clip, Width, Height)</p>
+<p>*关闭已经打开的窗口</p>
 <p>dev_close_window ()</p>
-<p>*打开窗口</p>
-<p>dev_open_window (0, 0, Width, Height, ‘black’, WindowID)</p>
+<p>*打开新窗口</p>
+<p>dev_open_window (0, 0, Width / 2, Height / 2, ‘black’, WindowID)</p>
+<p>*在新窗口里显示图像</p>
+<p>dev_display (Clip)</p>
+<p>*设置窗口字体显示,字体大小，字体样式，粗体，斜体</p>
+<p>set_display_font (WindowID, 14, ‘mono’, ‘true’, ‘false’)</p>
+<p>*在窗口右下方显示”Press Run  (F5) to  continue”字样</p>
+<p>disp_continue_message (WindowID, ‘black’, ‘true’)</p>
+<p>*停止程序的执行</p>
+<p>stop ()</p>
+<p>*二值化操作</p>
+<p>binary_threshold (Clip, Dark, ‘max_separability’, ‘dark’, UsedThreshold)</p>
+<p>*将区域进行连通处理</p>
+<p>connection (Dark, Single)</p>
+<p>*过滤出面积大小在【5000, 10000】范围里的区域</p>
+<p>select_shape (Single, Selected, ‘area’, ‘and’, 5000, 10000)</p>
+<p>*设置区域的填充方式</p>
+<p>dev_set_draw (‘fill’)</p>
+<p>*设置输出显示对象的颜色数目</p>
+<p>dev_set_colored (12)</p>
+<p>*在窗口右下方显示”Press Run  (F5) to  continue”字样</p>
+<p>disp_continue_message (WindowID, ‘black’, ‘true’)</p>
+<p>*停止程序的执行</p>
+<p>stop ()</p>
 <p>*显示图像</p>
-<p>dev_display (Image)</p>
-<p>*设置输出对象的颜色,对象是指区域,XLD,其它几何对象</p>
-<p>dev_set_color (‘red’)</p>
-<p>*设置区域填充方式</p>
-<p>dev_set_draw (‘margin’)</p>
-<p>*产生矩形ROI</p>
-<p>gen_rectangle1 (Rectangle, 260, 90, 360, 350)</p>
-<p>*减少图像区域</p>
-<p>reduce_domain (Image, Rectangle, ImageReduced)</p>
-<p>*固定阈值</p>
-<p>threshold (ImageReduced, Dark, 0, 150)</p>
-<p>*计算区域里的连通域</p>
-<p>connection (Dark, ConnectedRegions)</p>
-<p>*根据面积大小来过滤区域</p>
-<p>select_shape (ConnectedRegions, SelectedRegions, ‘area’, ‘and’, 10, 100)</p>
-<p>*获取区域等效椭圆的参数</p>
-<p>elliptic_axis (SelectedRegions, Ra, Rb, Phi)</p>
-<p>*获取区域的面积和中心坐标</p>
-<p>area_center (SelectedRegions, Area, Row, Column)</p>
-<p>*显示图像</p>
-<p>dev_display (Image)</p>
-<p>*设置输出对象的颜色</p>
+<p>dev_display (Clip)</p>
+<p>*设置输出对象的颜色为绿色</p>
 <p>dev_set_color (‘green’)</p>
-<p>*显示区域</p>
-<p>dev_display (SelectedRegions)</p>
-<p>*计算区域平均半径</p>
-<p>MeanRadius := sum(Ra) / |Ra|</p>
-<p>*计算半径的方差,方差描述随机变量对于数学期望的偏离程度.</p>
-<p>VarianceRadius := sum((Ra - MeanRadius)*(Ra - MeanRadius)) / (|Ra|)</p>
-<p> <img src="/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B1/2.png"></p>
+<p>*显示过滤后的区域</p>
+<p>dev_display (Selected)</p>
+<p>*获取过滤后区域的方向</p>
+<p>orientation_region (Selected, Phi)</p>
+<p>*获取过滤后区域的面积,中心的行坐标,列坐标</p>
+<p>area_center (Selected, Area, Row, Column)</p>
+<p>*设置输出对象的线宽为3</p>
+<p>dev_set_line_width (3)</p>
+<p>*设置区域的填充方式</p>
+<p>dev_set_draw (‘margin’)</p>
+<p>Length := 80</p>
+<p>*设置输出对象的颜色为蓝色</p>
+<p>dev_set_color (‘blue’)</p>
+<p>*在窗口上显示十字</p>
+<p>disp_arrow (WindowID, Row, Column, Row - Length * sin(Phi), Column + Length * cos(Phi), 4)</p>
+<p>*在窗口上显示回形针的角度</p>
+<p>disp_message (WindowID, deg(Phi)$’3.1f’ + ‘ deg’, ‘image’, Row, Column - 100, ‘black’, ‘false’)</p>
 
                 
             </div>
@@ -552,7 +558,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://olefil.cn/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B1/">https://olefil.cn/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B1/</a>
+                    <a href="https://olefil.cn/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B%E5%88%A4%E6%96%AD%E5%9B%9E%E5%BD%A2%E9%92%88%E6%96%B9%E5%90%91/">https://olefil.cn/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B%E5%88%A4%E6%96%AD%E5%9B%9E%E5%BD%A2%E9%92%88%E6%96%B9%E5%90%91/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -767,9 +773,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B%E5%88%A4%E6%96%AD%E5%9B%9E%E5%BD%A2%E9%92%88%E6%96%B9%E5%90%91/">
                     <div class="card-image">
@@ -787,9 +794,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -802,6 +809,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -824,13 +832,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/15/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E8%AE%B2-Halcon%E6%B5%8B%E9%87%8F%E5%8A%A9%E6%89%8B%E4%BD%BF%E7%94%A8/">
+                <a href="/2021/11/29/halcon%E8%A7%86%E8%A7%89%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E8%AE%B2-Halcon%E5%AE%9E%E4%BE%8B1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="halcon视觉第二十三讲 Halcon测量助手使用">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="halcon视觉第二十四讲 Halcon实例1">
                         
-                        <span class="card-title">halcon视觉第二十三讲 Halcon测量助手使用</span>
+                        <span class="card-title">halcon视觉第二十四讲 Halcon实例1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -841,7 +849,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-29
                             </span>
                         <span class="publish-author">
                             
