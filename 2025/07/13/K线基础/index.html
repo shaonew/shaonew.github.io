@@ -4,11 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="新说明书, zhouhui">
-    <meta name="description" content="D670上位机软件使用说明书软件说明：
-D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，皮带带修正轴，8个点胶平台，每个点胶平台独立的xyz点胶坐标系，独立的相机
-每个平台独立的温控模块，用modbus通讯控制温度。
-要有自动测">
+    <meta name="keywords" content="K线基础, zhouhui">
+    <meta name="description" content="K线基础为什么学习K线
+K线起源于日本德川幕府时代，最初用来记录米市行情和价格波动，因为形状像蜡烛，也被称为蜡烛图。K线图也是亚洲交易市场应用最为广泛的图表。K线图把抽象的价格波动具象化。其他的图表有折线图和柱状图。
+折线图反映的就是价格随">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +19,7 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>新说明书 | zhouhui</title>
+    <title>K线基础 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -337,12 +336,12 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">新说明书</h1>
+                    <h1 class="description center-align post-title">K线基础</h1>
                 </div>
             </div>
         </div>
@@ -378,7 +377,7 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-06-03
+                    2025-07-13
                 </div>
                 
 
@@ -399,50 +398,69 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="D670上位机软件使用说明书"><a href="#D670上位机软件使用说明书" class="headerlink" title="D670上位机软件使用说明书"></a><font color="red" font-size="100px" style="text-align: center;"><strong>D670上位机软件使用说明书</strong></font></h1><h2 id="软件说明："><a href="#软件说明：" class="headerlink" title="软件说明："></a>软件说明：</h2><ul>
-<li>D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，皮带带修正轴，8个点胶平台，每个点胶平台独立的xyz点胶坐标系，独立的相机</li>
-<li>每个平台独立的温控模块，用modbus通讯控制温度。</li>
-<li>要有自动测高功能</li>
+                <h1 id="K线基础"><a href="#K线基础" class="headerlink" title="K线基础"></a><font color="red" font-size="100px" style="text-align: center;"><strong>K线基础</strong></font></h1><h2 id="为什么学习K线"><a href="#为什么学习K线" class="headerlink" title="为什么学习K线"></a>为什么学习K线</h2><ul>
+<li>K线起源于日本德川幕府时代，最初用来记录米市行情和价格波动，因为形状像蜡烛，也被称为蜡烛图。K线图也是亚洲交易市场应用最为广泛的图表。K线图把抽象的价格波动具象化。其他的图表有折线图和柱状图。</li>
+<li>折线图反映的就是价格随时间变化过程。  <img src="images/2025071301.png"></li>
+<li>柱状图也是反映价格在时间维度上的变化,不同的是会按最小单位标注开盘价，收盘价，最高价，最低价，形状像竹子，也称竹节图。  <img src="images/2025071302.png">
+  <img src="images/2025071303.png"></li>
+<li>K线图和柱状图类似，不同的是在单位时间上有了影线和实体的区分，更加直观。  <img src="images/2025071304.png">
+  <img src="images/2025071305.png"></li>
 </ul>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
-<li>语言：C++</li>
-<li>Visual Studio 2022(C++)</li>
-<li>Qt5.14.2</li>
-<li>依赖管理：</li>
-<li>数据库脚本：</li>
+<h2 id="K线的构成原理"><a href="#K线的构成原理" class="headerlink" title="K线的构成原理"></a>K线的构成原理</h2><pre><code>K线有1个原则和4个参数。
+原则:固定时间框架,也就是多长时间绘制一次。(如 5min, 10min, 1h, 4h, 1D等)
+参数:开盘价，收盘价，最高价，最低价
+部分:影线，实体
+分类:阴险，阳线
+</code></pre>
+<img src="images/2025071306.png">
+     实例:绘制一天的K线图，找出开盘价，收盘价，最高价，最低价,开盘价高于收盘价是阴线，用绿色绘制实体和影线。
+<img src="images/2025071307.png">
+
+<h2 id="K线的应用"><a href="#K线的应用" class="headerlink" title="K线的应用"></a>K线的应用</h2><ul>
+<li>学会从K线中读取信息</li>
 </ul>
-<h2 id="软件界面图："><a href="#软件界面图：" class="headerlink" title="软件界面图："></a>软件界面图：</h2><h2 id="修改履历"><a href="#修改履历" class="headerlink" title="修改履历"></a>修改履历</h2><h3 id="1-修改时间-2024-1-18"><a href="#1-修改时间-2024-1-18" class="headerlink" title="1.修改时间 2024.1.18"></a>1.修改时间 2024.1.18</h3><ul>
+<h2 id="修改履历"><a href="#修改履历" class="headerlink" title="修改履历"></a>修改履历</h2><h3 id="1-修改时间-2024-1-10"><a href="#1-修改时间-2024-1-10" class="headerlink" title="1.修改时间 2024.1.10"></a>1.修改时间 2024.1.10</h3><ul>
 <li>a.增加界面型号显示   </li>
 <li>b.优化胶路轨迹，能自动生成L形胶路</li>
 </ul>
-<h3 id="2-修改时间-2024-2-27"><a href="#2-修改时间-2024-2-27" class="headerlink" title="2.修改时间 2024.2.27"></a>2.修改时间 2024.2.27</h3><ul>
-<li>a.修改取片擦胶和重启功能</li>
-<li>b.增加胶路间跳针高度可设置功能</li>
-<li>c.增加上下料界面R轴实时位置显示</li>
-<li>d.统计单个平台TT的功能</li>
-<li>e.启动设备，点胶X轴在排胶位置待机功能</li>
+<h3 id="2-修改时间-2024-1-21"><a href="#2-修改时间-2024-1-21" class="headerlink" title="2.修改时间 2024.1.21"></a>2.修改时间 2024.1.21</h3><ul>
+<li>a.增加胶阀类型选择，可以选针阀和喷阀   </li>
+<li>b.配置表增加擦胶感应器</li>
 </ul>
-<h3 id="3-修改时间-2024-3-16"><a href="#3-修改时间-2024-3-16" class="headerlink" title="3.修改时间 2024.3.16"></a>3.修改时间 2024.3.16</h3><ul>
-<li>a.屏蔽了轨迹撤销键，修改切配方温控通讯异常和测高Z轴抬升</li>
+<h3 id="3-修改时间-2024-1-24"><a href="#3-修改时间-2024-1-24" class="headerlink" title="3.修改时间 2024.1.24"></a>3.修改时间 2024.1.24</h3><ul>
+<li>a.增加全景相机补偿可以选择正反</li>
 </ul>
-<h3 id="4-修改时间-2024-3-19"><a href="#4-修改时间-2024-3-19" class="headerlink" title="4.修改时间 2024.3.19"></a>4.修改时间 2024.3.19</h3><ul>
-<li>a.温控计加入查询指令返回校验，三次不回信息，设备停机报警</li>
+<h3 id="4-修改时间-2024-2-19"><a href="#4-修改时间-2024-2-19" class="headerlink" title="4.修改时间 2024.2.19"></a>4.修改时间 2024.2.19</h3><ul>
+<li>a.全景相机逻辑改成优易控的模式</li>
 </ul>
-<h3 id="5-修改时间-2024-4-2"><a href="#5-修改时间-2024-4-2" class="headerlink" title="5.修改时间 2024.4.2"></a>5.修改时间 2024.4.2</h3><ul>
-<li>a.温控计10S查询一次，三次不回信息，设备对应平台停机报警</li>
-<li>b.修复相机示教不准问题</li>
-<li>c.模版随意做位置，胶路不变</li>
+<h3 id="5-修改时间-2024-2-22"><a href="#5-修改时间-2024-2-22" class="headerlink" title="5.修改时间 2024.2.22"></a>5.修改时间 2024.2.22</h3><ul>
+<li>a.修改一键上料回去避让位置取一次料bug</li>
 </ul>
-<h3 id="6-修改时间-2024-5-5"><a href="#6-修改时间-2024-5-5" class="headerlink" title="6.修改时间 2024.5.5"></a>6.修改时间 2024.5.5</h3><ul>
-<li>a.温控计2S查询一次，新开线程控制温度采集</li>
-<li>b.串口通讯增加发送后阻塞等待</li>
+<h3 id="6-修改时间-2024-2-28"><a href="#6-修改时间-2024-2-28" class="headerlink" title="6.修改时间 2024.2.28"></a>6.修改时间 2024.2.28</h3><ul>
+<li>a.开放基准补偿值</li>
 </ul>
-<h3 id="6-修改时间-2024-5-14"><a href="#6-修改时间-2024-5-14" class="headerlink" title="6.修改时间 2024.5.14"></a>6.修改时间 2024.5.14</h3><ul>
-<li>a.修改温控波特采集率为9600</li>
-<li>b.增加串口打开和关闭功能</li>
+<h3 id="7-修改时间-2024-3-16"><a href="#7-修改时间-2024-3-16" class="headerlink" title="7.修改时间 2024.3.16"></a>7.修改时间 2024.3.16</h3><ul>
+<li>a.屏蔽了轨迹撤销键，保存加入指示颜色</li>
 </ul>
-<h3 id="7-修改时间-2024-6-12"><a href="#7-修改时间-2024-6-12" class="headerlink" title="7.修改时间 2024.6.12"></a>7.修改时间 2024.6.12</h3><ul>
-<li>a.升级胶路轨迹</li>
+<h3 id="8-修改时间-2024-3-21"><a href="#8-修改时间-2024-3-21" class="headerlink" title="8.修改时间 2024.3.21"></a>8.修改时间 2024.3.21</h3><ul>
+<li>a.加入下料皮带手动控制和UV灯手动控制测试能量功能</li>
+</ul>
+<h3 id="9-修改时间-2024-3-22"><a href="#9-修改时间-2024-3-22" class="headerlink" title="9.修改时间 2024.3.22"></a>9.修改时间 2024.3.22</h3><ul>
+<li>a.修改全景去避让位取料的问题和偶尔取料X没有补偿的问题</li>
+</ul>
+<h3 id="10-修改时间-2024-3-25"><a href="#10-修改时间-2024-3-25" class="headerlink" title="10.修改时间 2024.3.25"></a>10.修改时间 2024.3.25</h3><ul>
+<li>a.喷阀擦胶增加摆动速度</li>
+<li>b.点胶Z轴增加待机高度</li>
+<li>c.增加一键断使能功能</li>
+<li>d.平台联机增加防默停防呆</li>
+</ul>
+<h3 id="11-修改时间-2024-4-2"><a href="#11-修改时间-2024-4-2" class="headerlink" title="11.修改时间 2024.4.2"></a>11.修改时间 2024.4.2</h3><ul>
+<li>a.修复相机示教不准问题</li>
+<li>b.模版随意做位置，胶路不变</li>
+</ul>
+<h3 id="12-修改时间-2024-4-18"><a href="#12-修改时间-2024-4-18" class="headerlink" title="12.修改时间 2024.4.18"></a>12.修改时间 2024.4.18</h3><ul>
+<li>a.增加点胶X轴待机位置选择</li>
+<li>b.修改搬料逻辑，改为先入后出</li>
 </ul>
 
                 
@@ -470,7 +488,7 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2025/06/03/%E6%96%B0%E8%AF%B4%E6%98%8E%E4%B9%A6/">http://example.com/2025/06/03/%E6%96%B0%E8%AF%B4%E6%98%8E%E4%B9%A6/</a>
+                    <a href="http://example.com/2025/07/13/K%E7%BA%BF%E5%9F%BA%E7%A1%80/">http://example.com/2025/07/13/K%E7%BA%BF%E5%9F%BA%E7%A1%80/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -584,9 +602,10 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2025/07/13/K%E7%BA%BF%E5%9F%BA%E7%A1%80/">
                     <div class="card-image">
@@ -604,9 +623,9 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-07-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -615,6 +634,7 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -625,13 +645,13 @@ D670软件，设备布局是2个料机械手，8个面胶，皮带上下料，�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/06/03/%E4%B8%8A%E4%BD%8D%E6%9C%BA%E8%AF%B4%E6%98%8E%E4%B9%A6/">
+                <a href="/2025/06/03/%E6%96%B0%E8%AF%B4%E6%98%8E%E4%B9%A6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="D650Plus上位机软件使用说明书">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="新说明书">
                         
-                        <span class="card-title">D650Plus上位机软件使用说明书</span>
+                        <span class="card-title">新说明书</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
