@@ -4,9 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="K仓位止损ATR指标, zhouhui">
-    <meta name="description" content="仓位止损ATR指标指标公式
-均线以及MACD其实都是属于趋势指标,在使用上更多的是用来作为判断趋势的方向。KD指标则不同，KD是属于震荡指标，它的用法并不是用来判断行情方向，而是用来提供入场的信号。所以有很多的用法是将均线，MACD这类判断">
+    <meta name="keywords" content="仓位止损ATR指标, zhouhui">
+    <meta name="description" content="仓位止损ATR指标指标原理
+ATR又叫做平均真实波动幅度指标，指标非常的简单，只有一个参数，图表的话也只有一根线。
+
+
+
+ATR指标的计算第一步是计算真实波动幅度TR，TR的计算要先计算三个数值，分别是当前K线的最高价减去最低价，最高价减去">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>K仓位止损ATR指标 | zhouhui</title>
+    <title>仓位止损ATR指标 | zhouhui</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -335,12 +339,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">K仓位止损ATR指标</h1>
+                    <h1 class="description center-align post-title">仓位止损ATR指标</h1>
                 </div>
             </div>
         </div>
@@ -397,52 +401,18 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="仓位止损ATR指标"><a href="#仓位止损ATR指标" class="headerlink" title="仓位止损ATR指标"></a><font color="red" font-size="100px" style="text-align: center;"><strong>仓位止损ATR指标</strong></font></h1><h2 id="指标公式"><a href="#指标公式" class="headerlink" title="指标公式"></a>指标公式</h2><ul>
-<li><p>均线以及MACD其实都是属于趋势指标,在使用上更多的是用来作为判断趋势的方向。KD指标则不同，KD是属于震荡指标，它的用法并不是用来判断行情方向，而是用来提供入场的信号。所以有很多的用法是将均线，MACD这类判断趋势的指标以及KD这样提供信号的指标结合运用，组合形成完整的交易策略。</p>
-</li>
-<li><p>KD指标也叫做随机震荡指标，KD指标数值的范围是0-100，在图表中是由4个部分组成。有一根20轴，有一根80轴，还有2根线，一根快线一根慢线。两根线也是紧紧的相互跟随，在0-100的范围内不断的波动。也会跟随着价格的变化不断的交叉分离，形成金叉死叉的信号。KD指标默认的参数是(9, 3, 3)，要详细的了解这个指标，我们要从公式入手，通过公式去了解，价格走势的变化是如何影响KD指标的变化。</p>
-</li>
+                <h1 id="仓位止损ATR指标"><a href="#仓位止损ATR指标" class="headerlink" title="仓位止损ATR指标"></a><font color="red" font-size="100px" style="text-align: center;"><strong>仓位止损ATR指标</strong></font></h1><h2 id="指标原理"><a href="#指标原理" class="headerlink" title="指标原理"></a>指标原理</h2><ul>
+<li>ATR又叫做平均真实波动幅度指标，指标非常的简单，只有一个参数，图表的话也只有一根线。</li>
 </ul>
-<img src="images/2025081601.png">
+<img src="images/2025082601.png">
 
+<p>ATR指标的计算第一步是计算真实波动幅度TR，TR的计算要先计算三个数值，分别是当前K线的最高价减去最低价，最高价减去上一根K线的收盘价，上一根K线的收盘价减去最低价，然后取三个数值当中的最大值，就是TR的数值。计算完真实波动幅度TR的数值然后就是计算ATR，ATR就是将最近的N根K线的TR数值求和再平均，就计算得到了当前K线对应的ATR的数值。这就是ATR指标计算的完整的过程，了解了ATR这个指标核心其实在于TR的计算，而TR呢又是却决于三个数值的最大值，那我们就重点来看下这三个数值。<br><img src="images/2025082602.png"></p>
 <ul>
-<li>KD指标的计算相对于均线和MACD指标来讲，会相对复杂一些，我们就以指标的默认参数一步一步的讲解。KD指标计算的第一步是计算未成熟随机值RSV，RSV的计算公式是当前K线的收盘价减去近9根K线的最低价，除以近9根K线的最高价减去最低价再乘以100。参数中的9对应的就是RSV的取值范围。如果将参数改为1433，那RSV的计算数值就是近期14根K线的范围，去取最高价最低价。第二步是计算K值，K值等于2&#x2F;3乘以前一日的K值，加上1&#x2F;3乘以当日的RSV值，如果没有前一天的K值就用50代替，简单的来说，K值就是RSV计算周期为3的加权移动平均线。第三步计算D值，D值等于2&#x2F;3乘以前一天的D值，加上1&#x2F;3乘以当天的K值。如果没有前一天的D值就用50代替，简单的来说，D值就是K值周期为3的加权移动平均线，通过以上的计算，我们就能够得到我们所观察到的KD的图表，KD指标的默认参数(9,3,3),9对应的就是KD指标的取值范围，第一个3对应的就是K值，也就是RSV的加权移动平均的周期，第二个3对应的就是D线的数值，也就是K线加权移动平均的周期，这就是三个参数的含义。理解了指标计算的过程，在整个计算的过程当中，先计算未成熟随机值RSV，然后配置是根据RSV的加权移动平均，D值又是K值的加权移动平均。但要了解KD指标，核心就在于理解未成熟随机值RSV。</li>
+<li>TR的计算<br>第一是最高价减去最低价，第二是最高价减去上根K线的收盘价，第三是上根K线的收盘价减去最低价。既然TR是取三个数值中的最大值，那我们就依次来看一下，这三个数值在什么情况下分别会最大。这三个数值的计算分别用到了三个价格，分别是当前K线的最高价，最低价，以及上一根K线的收盘价，那什么时候最高价减去最低价最大呢？那就是当上一根K线的收盘价在当前K线的最高价和最低价之间的时候，也就是说最低价小于等于前一根K线的收盘价。小于等于最高价的时候，那最高价减去最低价计算得到的数值是最大的。那什么时候最高价减去上一根K线的收盘价数值最大呢？一定是上一根K线的收盘价小于当前K线的最低价，这种情况在盘面当中观察，一般都是向上跳空。那什么时候上一根K线的收盘价减去最低价数值最大？那一定是上一根K线的收盘价要大于当前K线的最高价。在盘面当中呢一般对应的就是向下调控。通过找到三个数值对应的走势，那三个数值取最大值就涵盖了所有的相邻K线的情况，取其中的最大值，就计算得到了真实的波动幅度。然后呢再求和平均就得到了ATR的指标。</li>
 </ul>
-<img src="images/2025081602.png">
+<img src="images/2025082603.png">
 
-<h2 id="指标原理"><a href="#指标原理" class="headerlink" title="指标原理"></a>指标原理</h2><ul>
-<li>我们通过K线的走势来看下计算的过程，会比较容易理解RSV，我们把公式拆解一下，公式主要分为两部分，一部分是当前K线的收盘价减去近9根K线的最低价，计算的其实就是当前价格距离最低价的上涨的幅度，可以简单的理解为涨幅，另一部分是近期9根K线的最高价减去最低价，计算的就是近期9根K线的最大的振幅，那未成熟随机值RSV就可以简单的理解为是近期9根K线的涨幅&#x2F;振幅。</li>
-</ul>
-<img src="images/2025081603.png">
-
-<ul>
-<li>我们知道KD的取值范围是0-100，那什么时候RSV的取值会是0？什么时候会是100呢？拆解了公式之后，我们知道RSV的计算可以理解为近期9根K线的涨幅&#x2F;振幅，如果当前价格的收盘价等于近期9根K线的最高价，那涨幅就等于振幅。那RSV的数值就等于100，如果当前的收盘价等于近期9根K线的最低价，那当前的收盘价减去近期9根K线的最低价就等于0，也就是说涨幅等于0，那RSV计算的结果也就等于0。</li>
-</ul>
-<img src="images/2025081604.png">
-
-<ul>
-<li>我们可以观察到什么数值对应RSV的影响是最大的，就是当前的收盘价。KD指标数值收到当前价格收盘价的影响，收盘价的变化会迅速的影响KD指标发生变化，KD指标可以跟随价格的变化迅速的反应，也是由于这个特征，也就衍生出了KD指标的用法。</li>
-</ul>
-<h2 id="指标应用"><a href="#指标应用" class="headerlink" title="指标应用"></a>指标应用</h2><ul>
-<li>KD指标主要应用是用来作为入场的信号，通常来说到达20轴形成金叉并且上穿20轴，作为入场做多的信号，指标到达80轴形成死叉并且下穿80轴作为入场做空的信号。</li>
-</ul>
-<img src="images/2025081605.png">
-
-<ul>
-<li>为什么KD指标可以用来作为入场的信号，因为KD指标可以对一段连续涨跌之后的价格的反向运动做出快速的反应，还是回到KD指标的核心RSV的计算上，如果当前价格连续的上涨，当前的收盘价接近近期9根K线的最高价，近期9根K线的涨幅接近振幅，那RSV的数值就会比较大，一般来说连续的上涨会使得KD值一直增加到80轴的上方，如果价格一直连续上涨，那KD的数值会一直维持在80轴的上方，当连续的上涨之后，K线的收盘价出现了一定幅度的反转，会使得涨幅&#x2F;振幅计算得到的RSV数值急剧减小，反映到KD指标上，就是在80轴的上方形成死叉并且下穿80轴。所以一般来说会把到达80轴形成死叉并且下穿80轴这样的信号作为入场做空的信号。</li>
-</ul>
-<img src="images/2025081606.png">
-
-<ul>
-<li><p>不过要注意的是，KD信号跟随价格的波动是非常的灵敏所以出现的金叉死叉的信号是非常多的，而且从KD的默认参数也能看得出来，他能反映的只是以近期的9根K线为基础观察到的只是当前收盘价的变化。所以KD只是提供入场的信号。是你在确定了交易的方向寻找入场交易机会的时候，给你提供入场信号的一个指标，因此KD一般都会结合其他的指标一起去使用。最简单的用法就是用均线或者MACD等指标去判断市场的方向，然后用KD指标去入场。</p>
-</li>
-<li><p>比如我们MACD指标结合KD指标组合形成一个简单的策略，MACD快线在0轴的上方，判断行情是多头的趋势，然后KD指标出现到达20轴的金叉并且上穿20轴的时候，作为入场做多的信号，我们标注出出现入场信号的位置，我们可以看到在一段趋势行情展开的时候，根据KD作为入场的信号，都可以有不错的入场的位置。</p>
-</li>
-</ul>
-<img src="images/2025081607.png">
-
-<p>以上就是针对KD指标的详细的讲解，KD指标因为可以紧紧的跟随着收盘价变化，对于价格反应灵敏，是一个很好的提供入场信号的工具。但是它能够给到你的最大的作用，也只是信号的作用。你仍然需要其他的工具去判断方向。仍然需要其他的条件，去确定入场的时机。指标一定是在你明确自己的需求之后，更高效的实现你目的的工具，使用之前重要的是了解自己策略的需求。</p>
-
+<h2 id="海龟交易法应用"><a href="#海龟交易法应用" class="headerlink" title="海龟交易法应用"></a>海龟交易法应用</h2>
                 
             </div>
             <hr/>
@@ -591,9 +561,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="K仓位止损ATR指标">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="仓位止损ATR指标">
                         
-                        <span class="card-title">K仓位止损ATR指标</span>
+                        <span class="card-title">仓位止损ATR指标</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
