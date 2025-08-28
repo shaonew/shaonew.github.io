@@ -6,9 +6,11 @@
     <meta charset="utf-8">
     <meta name="keywords" content="出场信号RSI指标, zhouhui">
     <meta name="description" content="出场信号RSI指标指标原理
-RSI叫做相对强弱指标。
-
-">
+名称:对强弱指标。
+参数:(默认14)
+组成: RSI线，70轴， 50轴， 30轴
+取值: (0-100)
+RSI又叫做相对强弱指标，这个指标并不复杂，RSI指标的主要组成部分是由RSI的线以及30轴，50轴，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -400,8 +402,23 @@ RSI叫做相对强弱指标。
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="出场信号RSI指标"><a href="#出场信号RSI指标" class="headerlink" title="出场信号RSI指标"></a><font color="red" font-size="100px" style="text-align: center;"><strong>出场信号RSI指标</strong></font></h1><h2 id="指标原理"><a href="#指标原理" class="headerlink" title="指标原理"></a>指标原理</h2><ul>
-<li>RSI叫做相对强弱指标。</li>
+<li>名称:对强弱指标。</li>
+<li>参数:(默认14)</li>
+<li>组成: RSI线，70轴， 50轴， 30轴</li>
+<li>取值: (0-100)</li>
+<li>RSI又叫做相对强弱指标，这个指标并不复杂，RSI指标的主要组成部分是由RSI的线以及30轴，50轴，70轴构成，一般来说RSI指标默认的参数是14，指标的取值范围是0-100，通常会把RSI指标取值范围的0-100分为四个部分，从极弱，弱，强到极强四个区域，50轴就是强弱的分界线，0~30就是极弱，30-50是弱，50-70是强，70-100是极强，0-30的范围也叫做超卖区，70-100的范围也叫做超买区，要理解这个指标的原理，我们还是要看一看指标的公式，RSI指标通常又两种计算方式。</li>
 </ul>
+<img src="images/2025082701.png">
+
+<ul>
+<li>第一种计算方式的公式是,RSI等于A&#x2F;(A+B)*100,A代表的是N根K线的收盘涨幅之和，B代表的是N根K线的收盘跌幅之和的绝对值</li>
+<li>另外一种公式是先计算相对强度RS，RS等于近期N根K线收盘价涨幅之和的均值，除以N根K线收盘价跌幅之和的均值，然后再计算RSI，RSI就等于100减去100除以(1+RS),虽然公式的步骤是有不同，但是计算的结果是一样的，当你把RS计算公式当中的N根K线的收盘价涨幅之和替换成A，近期N根K线的收盘价跌幅之和替换成B，然后带入RSI的公式当中推导一下，你会看到两个公式本质上是一样的。</li>
+<li>我们以第一种计算的方式，具体的来了解一下。</li>
+</ul>
+<img src="images/2025082702.png">
+
+<p>以周期为14的RSI指标为例，从当前的K线算起，倒退包括当前K线以内的15根K线，以每一根K线的收盘价减去上一根K线的收盘价，得到14个数值，这些数值有正有负，然后我们开始计算，首先A等于14个数字当中的正数之和，B等于14个数字当中的复数之和的绝对值，RSI等于A&#x2F;(A+B)再乘以100，我们就计算得到了当前K线对应的RSI的数值，单纯看公式的话可能不太容易理解，RSI指标其实计算的就是近期14根K线上涨的总波动，比上总的波动。我们知道RSI取值的范围是0-100，我们分别来看下不同走势当中，RSI的数值会有怎样的变化。<br><img src="images/2025082703.png"></p>
+<p>第一段走势价格连续的上涨，RSI的数值在连续上涨之后，也超过了70轴，进入了超买区，我们观察最近的14根K线RSI数值的计算重要的是看A B的数值，A值是收盘价涨幅之和，B值是收盘价跌幅之和的绝对值，这一段上涨的走势当中，我们能够明显的观察到A值是非常大的，B值又非常的小，计算RSI用A除以（A+B）所占的比例也是很大的。所以RSI才能够超过70轴进入超买区。</p>
 
                 
             </div>
